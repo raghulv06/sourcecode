@@ -1,0 +1,54 @@
+def input_student_details():
+ student_list = []
+ for i in range(5):
+   name = input("Enter name of student {}: ".format(i+1))
+   regno = input("Enter registration number of student {}: ".format(i+1))
+   cgpa = float(input("Enter CGPA of student {}: ".format(i+1)))
+   student_list.append((name, regno, cgpa))
+ return student_list
+
+def sort_by_name(student_list):
+ student_list.sort(key=lambda student: student[0])  # Sort by name
+ return student_list
+
+def sort_by_regno(student_list):
+ student_list.sort(key=lambda student: student[1])  # Sort by regno
+ return student_list
+
+def sort_by_cgpa(student_list):
+ student_list.sort(key=lambda student: student[2], reverse=True)  # Sort by cgpa in descending order
+ return student_list
+
+def display_student_details(student_list):
+ print("\nStudent Details:")
+ for student in student_list:
+   print("Name: {}, Reg. No.: {}, CGPA: {}".format(*student))
+
+def main():
+ student_list = input_student_details()
+
+ while True:
+   print("\nMenu:")
+   print("1. Sort by Name")
+   print("2. Sort by Reg. No.")
+   print("3. Sort by CGPA")
+   print("4. Exit")
+
+   choice = input("Enter your choice: ")
+
+   if choice == '1':
+     student_list = sort_by_name(student_list)
+     display_student_details(student_list)
+   elif choice == '2':
+     student_list = sort_by_regno(student_list)
+     display_student_details(student_list)
+   elif choice == '3':
+     student_list = sort_by_cgpa(student_list)
+     display_student_details(student_list)
+   elif choice == '4':
+     break
+   else:
+     print("Invalid choice!")
+
+if __name__ == "__main__":
+ main()
